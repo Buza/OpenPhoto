@@ -5,7 +5,7 @@ A simple web server that can handle photo uploads from the OpenPhoto iOS applica
 Uses the Tornado web server:  http://www.tornadoweb.org
 
 Created by Kyle Buza on 2/5/11.
-Copyright 2008 BuzaMoto. All rights reserved.
+Copyright 2010 BuzaMoto. All rights reserved.
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation
