@@ -1,7 +1,41 @@
 
 OpenPhoto
 
-OpenPhoto is an application for iOS that does something.
+A. Overview:
+------------
 
-It is not directly releated to the OpenPhoto.me project.
+OpenPhoto allows you to take photos and store them where you want.
+
+Have you ever wanted a photo app that automatically saves your photos to your very own server? If so, then OpenPhoto is for you. 
+
+OpenPhoto allows you to specify the location to which the photos you take will get stored. If you know how to set up a web server, you can get started with OpenPhoto right away!
+
+OpenPhoto is great for:
+
+★ Private events, where saving your photos to someone else's server may not be appropriate to maintain the privacy of the attendees.
+
+★ Public events, where you'd like to allow everyone with the OpenPhoto app to send their photos to a server that you have control of. This means you can take control of the presentation, layout, and access to the pictures as you see fit. 
+
+OpenPhoto allows you to specify which image size (S, M, L) you'd like to save to the server, optionally include location information, specify a username, and even add comments to each individual photo. It remembers which servers you've added so you can change the location where your photos will get saved with a few simple taps.
+
+
+Note:
+
+While this project has no official relationship to the (equally outstanding) OpenPhoto.me project, it does support saving photos to OpenPhoto.me services. In other words, if you're using OpenPhoto.me to save and organize your photos, this app can help you with that!
+
+
+B. Technical Details:
+---------------------
+
+Setting up a server
+------------------- 
+
+Setting up a webserver to store your pictures and metadata generated from OpenPhoto is easy. In fact, openphoto.py (part of this repository) is a simple Tornado-based webserver that you can set up on your own server to aggregate the photos you take with the app.
+
+
+Presentation
+------------ 
+
+One of the great things about OpenPhoto is not only that you decide where your pictures are stored, but you also have complete control over the presentation. You're free to build anything you can imagine with pictures, usernames, comments, and geolocation information of the photos you (and your friends) are taking with the app. 
+ 
 
