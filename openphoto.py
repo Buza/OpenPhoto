@@ -33,6 +33,7 @@ define("port", default=25006, help="Port to run the server on.", type=int)
 PHOTO_DIR_PREFIX = 'static/data/'
 
 class Application(tornado.web.Application):
+
     def __init__(self):
         handlers = [
             (r"/hello", HelloHandler),
@@ -46,9 +47,8 @@ class Application(tornado.web.Application):
         tornado.web.Application.__init__(self, handlers, **settings)
 
 class HelloHandler(tornado.web.RequestHandler):
-  
     def get(self):
-    	res = { 'status' : 'success', 'title' : 'My OpenPhoto Test Server'}
+    	res = { 'code' : 200, 'status' : 'success', 'title' : 'My OpenPhoto Test Server'}
     	self.write(tornado.escape.json_encode(res))
 
 class CommentHandler(tornado.web.RequestHandler):
@@ -92,7 +92,6 @@ class UploadHandlerLocal(tornado.web.RequestHandler):
       latitude = self.get_argument("latitude", 0)
       longitude = self.get_argument("longitude", 0)
 
-      print "hi"
       if photo_id == None or \
          event_id == None or \
          user_id == None or \
