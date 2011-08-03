@@ -32,6 +32,54 @@ Setting up a server
 
 Setting up a webserver to store your pictures and metadata generated from OpenPhoto is easy. In fact, openphoto.py (part of this repository) is a simple Tornado-based webserver that you can set up on your own server to aggregate the photos you take with the app.
 
+If you'd like to build your own server, that's easy as well. To integrate with the iOS app, your server must implement the following three handlers:
+
+  1. /<server name>/hello
+    This is used as a way to test a server to ensure it's capbable of responding
+    to OpenPhoto requests. 
+
+      The app expects responses from this in JSON:
+	{ 'code' : 200, 'status' : 'success', 'title' : 'My OpenPhoto Test Server'}
+
+      The 'title' field will then be displayed by the app in the Hosts table upon success.
+
+
+  2. /<server name>/upload
+    This is used to upload photos to the server. The example server implementation is
+    extremely simple, and does not handle requests in parallel.  The app automatically 
+    sends photos to the server as you take them, and expects the following parameters: 
+
+      'photo_id' = A unique identifier for a photo. Currently is based on a combination of timestamp and usersname.
+      'user_id' = The user-specified username.
+      'comment' = The comment associated with the photo.
+      'latitude' = The latitude of the location where the photo was taken.
+      'longitude' = The longitude of the location where the photo was taken.
+      'photo_width' = The width of the full sized photo in pixels.
+      'photo_height' = The height of the full sized photo in pixels.
+      'thumb_width' = The width of the thumbnail photo in pixels.
+      'thumb_height' = The height of the thumbnail photo in pixels.
+      'imgdata_b64' = The base64-endoded full sized photo. 
+      'imgdata_thumb_b64' = The base64-encoded photo thumbnail.
+
+      The app expects responses from this in JSON:
+
+        { 'status' : 'failure' }
+        { 'status' : 'success' }
+    
+
+  3. /<server name>/comment
+    Comments may be added at any time in the app by double tapping on any picture.
+    Because comments can be updated in this fashion, new comments are sent to the 
+    server as a /comment/ request with the following parameters: 
+       
+      'photo_id' - The photo id, should be used to locate the photo.
+      'comment' - The photo id, should be used to locate the photo.
+
+      The app expects responses from this in JSON:
+
+        { 'status' : 'failure' }
+        { 'status' : 'success' }
+
 
 Presentation
 ------------ 

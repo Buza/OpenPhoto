@@ -36,7 +36,6 @@ import datetime
 class Photo(Entity):
   
     photo_id = Field(String(length=100), primary_key=True)
-    event_id = Field(String(length=100))
     user_id = Field(String(length=100))
     comment = Field(String(length=500))
     photo_latitude = Field(Float())
@@ -47,9 +46,8 @@ class Photo(Entity):
     thumb_height = Field(Integer())
     timestamp = Field(DateTime())
 
-    def __init__(self, photo_id, event_id, user_id, photo_width, photo_height, thumb_width, thumb_height, lat, lon, comment):
+    def __init__(self, photo_id, user_id, photo_width, photo_height, thumb_width, thumb_height, lat, lon, comment):
         self.photo_id = photo_id
-        self.event_id = event_id 
         self.comment = comment
         self.user_id = user_id
         self.photo_latitude = lat
@@ -61,4 +59,4 @@ class Photo(Entity):
         self.timestamp = datetime.datetime.now()
         
     def __repr__(self):
-        return "<Photo ('%s','%s', '%s', Latitude: %d, Longitude: %d, Comment %s)>" % (self.photo_id, self.event_id, self.user_id, self.photo_latitude, self.photo_longitude, self.comment)
+        return "<Photo ('%s','%s', Latitude: %d, Longitude: %d, Comment %s)>" % (self.photo_id, self.user_id, self.photo_latitude, self.photo_longitude, self.comment)

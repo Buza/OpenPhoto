@@ -67,6 +67,7 @@ class Application(tornado.web.Application):
         tornado.web.Application.__init__(self, handlers, **settings)
 
 class HelloHandler(tornado.web.RequestHandler):
+
     def get(self):
     	res = { 'code' : 200, 'status' : 'success', 'title' : 'My OpenPhoto Test Server'}
     	self.write(tornado.escape.json_encode(res))
@@ -100,7 +101,6 @@ class UploadHandlerLocal(tornado.web.RequestHandler):
 
       photo_id = self.get_argument("photo_id", None)
       user_id = self.get_argument("user_id", None)
-      event_id = self.get_argument("eventID", None)
       comment = self.get_argument("comment", "")
       photo_width = self.get_argument("photo_width", None)
       photo_height = self.get_argument("photo_height", None)
@@ -113,7 +113,6 @@ class UploadHandlerLocal(tornado.web.RequestHandler):
       longitude = self.get_argument("longitude", 0)
 
       if photo_id == None or \
-         event_id == None or \
          user_id == None or \
          imgdata_b64 == None or \
          imgdata_thumb_b64 == None or \
@@ -146,7 +145,7 @@ class UploadHandlerLocal(tornado.web.RequestHandler):
         self.write(tornado.escape.json_encode(res))
         return
       try:
-        _photo = Photo(photo_id, event_id, user_id, photo_width, photo_height, thumb_width, thumb_height, latitude, longitude, comment)
+        _photo = Photo(photo_id, user_id, photo_width, photo_height, thumb_width, thumb_height, latitude, longitude, comment)
         session.commit()
       except Exception, e:
         res = { 'status' : 'failure'}
